@@ -82,7 +82,7 @@ class ViewController: UIViewController {
             self.breedLabel.text = tiger.breed
             
             }, completion: {
-                finished(Bool); -> () in
+                (finished: Bool) -> () in
         })
         // the cooler but more complicated way using "self"
     }
