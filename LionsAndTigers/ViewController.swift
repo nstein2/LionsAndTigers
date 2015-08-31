@@ -19,6 +19,9 @@ class ViewController: UIViewController {
     //important to add this so that we can append later on (the array now exists)
     //adding this up here as a "property" allows us to access the array in multiple functions
     
+    var currentIndex = 0
+    //persist the index numbers so that we don't get "recurring tigers"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -65,14 +68,21 @@ class ViewController: UIViewController {
 
     @IBAction func nextBarButtonItemPressed(sender: UIBarButtonItem) {
         
-        let randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
+        var randomIndex:Int
+        
+        do {
+        randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
+        } while currentIndex == randomIndex
+        
+        currentIndex = randomIndex
+        
         let tiger = myTigers[randomIndex]
         
 //        myImageView.image = tiger.image
 //        nameLabel.text = tiger.name
 //        ageLabel.text = "\(tiger.age)"
 //        breedLabel.text = tiger.breed
-        // the easier more basic way to access these
+          //the easier more basic way to access these
         
         UIView.transitionWithView(self.view, duration: 2, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
             
